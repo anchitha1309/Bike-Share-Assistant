@@ -1,13 +1,13 @@
 
-# 🚴‍♀️ Bike Share Analytics Assistant
+# Bike Share Analytics Assistant
 
 A natural language bike-share analytics assistant that translates user questions into parameterized SQL queries and provides instant insights from PostgreSQL data.
 
-## 🎯 Overview
+## Overview
 
 This system allows users to ask questions about bike-share data in natural language (e.g., "How many kilometres did women ride on rainy days last month?") and automatically generates the appropriate SQL queries to answer them. The system features dynamic schema discovery, semantic column mapping, and a beautiful web interface.
 
-## 🚀 Quick Start
+## Quick Start
 
 ### **Option 1: Docker (Recommended)**
 
@@ -90,7 +90,7 @@ chmod +x run.sh
    npm run dev:frontend # Frontend (port 5173)
    ```
 
-## 🐳 Docker Setup
+## Docker Setup
 
 The application is containerized using Docker with separate services for frontend and backend:
 
@@ -98,7 +98,7 @@ The application is containerized using Docker with separate services for fronten
 - **Backend**: Express API running on port 3000
 - **Shared**: Single Dockerfile with multi-service setup
 
-## 🔧 Docker Commands
+## Docker Commands
 
 ### **Basic Operations**
 ```bash
@@ -132,7 +132,7 @@ docker-compose restart
 curl http://localhost:3000/health
 ```
 
-## 🏗️ Architecture
+## Architecture
 
 ### **System Components**
 ```
@@ -155,7 +155,7 @@ curl http://localhost:3000/health
 3. **QueryProcessor** - Orchestrates the entire pipeline
 4. **SchemaDiscovery** - Dynamically introspects database structure
 
-## 🔍 How It Works
+## How It Works
 
 ### **Dynamic Schema Discovery**
 The system uses PostgreSQL's `information_schema.columns` to discover table structure at runtime, eliminating the need for hard-coded column mappings.
@@ -196,7 +196,7 @@ Each database column is scored against user text using multiple criteria:
 - **Join**: Automatic table joining based on relationships
 - **Group By**: Station-based grouping for analysis
 
-## 🚀 Key Features
+## Key Features
 
 ### **Natural Language Understanding**
 - **Date Parsing**: "June 2025", "first week", "last month"
@@ -216,7 +216,7 @@ Each database column is scored against user text using multiple criteria:
 - **SQL Transparency**: Shows generated SQL for verification
 - **Error Handling**: Graceful degradation for edge cases
 
-## 🛡️ Security Features
+## Security Features
 
 ### **SQL Injection Prevention**
 - **Parameterized Queries**: All user inputs use `$1`, `$2` placeholders
@@ -329,9 +329,9 @@ Tests:       15 passed, 15 total
 Snapshots:   0 total
 Time:        2.721 s
 
-✅ All tests passing
-✅ 100% coverage of core functionality
-✅ Sample questions validated
+- All tests passing
+- 100% coverage of core functionality
+- Sample questions validated
 ```
 
 ## 🌐 API Reference
@@ -402,7 +402,7 @@ Response:
 - **Error Handling**: Clear, actionable error messages
 - **Copy Functionality**: Easy SQL copying for verification
 
-## 🔧 Technical Stack
+## Technical Stack
 
 ### **Backend Technologies**
 - **Runtime**: Node.js 18+
@@ -454,7 +454,7 @@ Bike-Share-Assistant/
 - **Docker**: Consistent development and deployment environment
 - **Vite**: Fast build times and hot module replacement
 
-## 🔍 Semantic Mapping Methodology
+## Semantic Mapping Methodology
 
 ### **Multi-Factor Column Matching**
 The system uses a sophisticated scoring algorithm to map user language to database columns **without any hard-coded English→column synonyms**:
@@ -511,64 +511,7 @@ Each database column is scored against user text using multiple criteria:
 // WHERE t.rider_gender = $1 AND w.precipitation_mm > $2
 ```
 
-### **Key Technical Achievements:**
-- ✅ **No Hard-coded Synonyms**: All mappings are discovered dynamically
-- ✅ **Dynamic Column Scoring**: Runtime evaluation of user text vs database schema
-- ✅ **Semantic Understanding**: Context-aware column selection
-- ✅ **Schema Independence**: Works with any database structure
-- ✅ **Performance Optimized**: Efficient scoring with caching
 
-## 🏆 **Technical Constraint Compliance**
-
-### **✅ All Technical Constraints Successfully Implemented**
-
-This system fully complies with all specified technical constraints:
-
-#### **1. LLM Calls Allowed but Insufficient - FULLY COMPLIANT**
-- ✅ **Dynamic Schema Introspection**: Uses `information_schema.columns` at runtime
-- ✅ **Dynamic Column Scoring**: Sophisticated scoring algorithm for candidate tables/columns vs user text
-- ✅ **Deterministic Mappings**: All mappings chosen deterministically based on scoring
-- ✅ **No External Dependencies**: Pure rule-based system with no LLM calls
-
-#### **2. No Hard-coded English→Column Synonyms - FULLY COMPLIANT**
-- ✅ **Zero Hard-coded Mappings**: No predefined English→column mappings
-- ✅ **Dynamic Discovery**: All synonyms discovered through semantic scoring
-- ✅ **Runtime Adaptation**: Adapts to any database schema automatically
-- ✅ **Semantic Understanding**: Context-aware column selection
-
-#### **3. Keep Secrets Out of Source Control - FULLY COMPLIANT**
-- ✅ **Environment Variables**: All sensitive data in `.env` files
-- ✅ **Git Ignored**: `.env` files properly excluded from version control
-- ✅ **Runtime Configuration**: Database credentials loaded at startup
-- ✅ **Security Validation**: Required environment variables checked
-
-#### **4. Must Run on Linux; Docker Appreciated - FULLY COMPLIANT**
-- ✅ **Linux Compatibility**: Alpine Linux base image
-- ✅ **Docker Implementation**: Multi-service containerization
-- ✅ **Cross-platform**: Works on Linux, macOS, and Windows
-- ✅ **Production Ready**: Optimized for Linux deployment
-
-### **Implementation Evidence:**
-
-#### **Dynamic Column Scoring Example:**
-```typescript
-// User Question: "How many women rode on rainy days?"
-// System Response: Dynamic column discovery and scoring
-
-// Step 1: Schema Discovery
-const schema = await schemaDiscovery.getSchema(); // information_schema.columns
-
-// Step 2: Dynamic Column Scoring (NO hard-coded mappings)
-const scoredColumns = ColumnScorer.findBestMatches(userText, availableColumns);
-// Results:
-// - "women" → rider_gender (semantic relevance: 40 points)
-// - "rainy" → precipitation_mm (semantic relevance: 40 points)
-
-// Step 3: Deterministic SQL Generation
-const sql = SQLQueryBuilder.buildQuery(intent, schemaColumns);
-// Generated: SELECT COUNT(*) FROM trips t JOIN daily_weather w 
-// WHERE t.rider_gender = $1 AND w.precipitation_mm > $2
-```
 
 #### **Security Implementation:**
 ```typescript
@@ -601,29 +544,8 @@ services:
     ports: ["5173:5173"]
 ```
 
-### **Compliance Verification:**
-- ✅ **Tests Passing**: 31/31 tests pass, including constraint compliance tests
-- ✅ **API Working**: Dynamic column scoring successfully generates correct SQL
-- ✅ **No Hard-coded Mappings**: All mappings discovered dynamically
-- ✅ **Schema Independence**: Works with any PostgreSQL database
-- ✅ **Security Verified**: No secrets in source code
-- ✅ **Linux Ready**: Alpine Linux base with Docker deployment
 
-## 📈 Performance & Scalability
-
-### **Optimization Strategies**
-- **Schema Caching**: 5-minute TTL for schema information
-- **Query Optimization**: Efficient JOIN strategies
-- **Connection Pooling**: PostgreSQL connection management
-- **Response Caching**: Frequently requested queries
-
-### **Monitoring & Metrics**
-- **Query Execution Time**: Performance tracking
-- **Success Rates**: Error rate monitoring
-- **Response Times**: API performance metrics
-- **Resource Usage**: Memory and CPU monitoring
-
-## 🔮 Future Enhancements
+## Future Enhancements
 
 ### **Planned Features**
 - **Machine Learning**: Improved semantic understanding
@@ -637,25 +559,9 @@ services:
 - **Caching Layer**: Redis integration
 - **API Gateway**: Rate limiting and authentication
 
-## 📝 License
 
-This project is licensed under the ISC License.
 
-## 🤝 Contributing
 
-We welcome contributions! Please see our contributing guidelines for details on:
-- Code style and standards
-- Testing requirements
-- Pull request process
-- Issue reporting
-
-## 📞 Support
-
-For support and questions:
-- **Issues**: GitHub Issues
-- **Documentation**: This README
-- **API Docs**: Built-in API documentation
-- **Examples**: Sample questions and use cases
 
 
 ---
