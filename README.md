@@ -1,3 +1,4 @@
+
 # 🚴‍♀️ Bike Share Analytics Assistant
 
 A natural language bike-share analytics assistant that translates user questions into parameterized SQL queries and provides instant insights from PostgreSQL data.
@@ -658,5 +659,7 @@ For support and questions:
 
 
 ---
+
+
 
 
