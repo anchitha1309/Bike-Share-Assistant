@@ -388,20 +388,6 @@ Response:
 }
 ```
 
-## 🎨 UI/UX Design
-
-### **Design Features**
-- **Modern Interface**: Clean black, white, and gray theme
-- **Responsive Layout**: Works on all device sizes
-- **Interactive Elements**: Clickable sample questions
-- **Real-time Feedback**: Loading states and smooth animations
-
-### **User Experience**
-- **Sample Questions**: Pre-built examples for easy testing
-- **Results Panel**: Side-by-side SQL and results display
-- **Error Handling**: Clear, actionable error messages
-- **Copy Functionality**: Easy SQL copying for verification
-
 ## Technical Stack
 
 ### **Backend Technologies**
